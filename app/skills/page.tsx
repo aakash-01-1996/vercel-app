@@ -12,11 +12,11 @@ const skills = [
     items: ["Python", "JavaScript", "Java", "C++", "TypeScript"],
   },
   {
-    title: "Frontend",
+    title: "Frontend Development",
     items: ["React", "Next.js", "Tailwind CSS", "HTML/CSS", "Vue.js"],
   },
   {
-    title: "Backend",
+    title: "Backend Development",
     items: ["Node.js", "Express", "Django", "Spring Boot", "FastAPI"],
   },
   {

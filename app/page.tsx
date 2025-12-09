@@ -71,7 +71,7 @@ export default function Home() {
             </p>
             <p>
               Most of my work revolves around full-stack development, backend
-              systems, and building AI/ML driven applications. I'm comfortable
+              systems, and building AI driven applications. I'm comfortable
               designing APIs, working with databases, and building end-to-end
               features. When something is new, I learn it quickly and apply it
               without overthinking — that's just how I operate.
