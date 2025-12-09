@@ -211,8 +211,8 @@ export default function Projects() {
             <div
               id="projects-list"
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
+                display: "flex",
+                flexDirection: "column",
                 gap: "1.5rem",
               }}
             >
