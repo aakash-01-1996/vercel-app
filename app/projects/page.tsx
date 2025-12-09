@@ -2,12 +2,6 @@
 
 import Hero from "@/components/Hero";
 import { useState, useEffect } from "react";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Projects - Aakash Ambodkar",
-  description: "Explore my GitHub projects and contributions in full-stack development, AI/ML, and system design.",
-};
 
 const GITHUB_USERNAME = "aakash-01-1996";
 const SELECTED_REPOS = [
@@ -178,7 +172,7 @@ export default function Projects() {
 
   return (
     <main>
-      <Hero title="My Projects" subtitle="Explore projects I've built" />
+      <Hero title="My Projects" subtitle="Here’s some of my work. I like building useful things and trying out new technologies. Feel free to explore!" />
       <section style={{ padding: "2rem 3rem", background: "var(--bg-primary)", color: "var(--text-primary)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -199,9 +193,9 @@ export default function Projects() {
                   cursor: "pointer",
                 }}
               >
-                <option value="stars">⭐ Stars</option>
+                <option value="stars">Most Stars</option>
                 <option value="az">A-Z</option>
-                <option value="recent">📅 Recent</option>
+                <option value="recent">Recently Added</option>
               </select>
             </div>
             <span style={{ fontSize: "0.9rem", color: "var(--text-secondary)" }}>

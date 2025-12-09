@@ -1,19 +1,41 @@
 'use client';
 
 import Hero from "@/components/Hero";
-import { useEffect } from "react";
-import { Metadata } from "next";
+import { useEffect, useState } from "react";
+import { RateLimiter, isValidEmail, logSuspiciousActivity } from "@/lib/security";
 
-export const metadata: Metadata = {
-  title: "Contact - Aakash Ambodkar",
-  description: "Get in touch with me for opportunities, collaborations, or just to say hello.",
-};
+const formLimiter = new RateLimiter(3000); // 3 second cooldown between submissions
 
 export default function Contact() {
+  const [submissionError, setSubmissionError] = useState('');
+
   useEffect(() => {
     const form = document.querySelector('.send-message form') as HTMLFormElement;
     if (form) {
-      form.addEventListener('submit', function() {
+      form.addEventListener('submit', function(e) {
+        // Security: Check rate limiting
+        if (!formLimiter.canSubmit()) {
+          e.preventDefault();
+          setSubmissionError('Please wait before submitting again');
+          logSuspiciousActivity('Rapid form submission detected', {
+            timestamp: new Date().toISOString(),
+          });
+          return;
+        }
+
+        // Security: Validate email before submission
+        const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement;
+        if (emailInput && !isValidEmail(emailInput.value)) {
+          e.preventDefault();
+          setSubmissionError('Please enter a valid email address');
+          logSuspiciousActivity('Invalid email submission attempt', {
+            email: emailInput.value,
+          });
+          return;
+        }
+
+        setSubmissionError('');
+        
         setTimeout(() => {
           form.reset();
         }, 100);
@@ -45,6 +67,18 @@ export default function Contact() {
           {/* Send message form on the right */}
           <div className="send-message">
             <h2>Send a Message</h2>
+            {submissionError && (
+              <div style={{
+                background: '#fee',
+                color: '#c33',
+                padding: '1rem',
+                borderRadius: '8px',
+                marginBottom: '1rem',
+                fontSize: '0.95rem'
+              }}>
+                {submissionError}
+              </div>
+            )}
             <form action="https://formspree.io/f/movgnpaj" method="POST">
               <label htmlFor="name">Name</label>
               <input

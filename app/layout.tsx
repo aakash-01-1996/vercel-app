@@ -51,6 +51,38 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        {/* JSON-LD Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Aakash Ambodkar",
+              url: "https://aakash-portfolio.vercel.app",
+              image: "https://aakash-portfolio.vercel.app/avatar.jpg",
+              jobTitle: "Software Engineer",
+              worksFor: {
+                "@type": "Organization",
+                name: "Optum",
+              },
+              sameAs: [
+                "https://linkedin.com/in/aakashambodkar/",
+                "https://github.com/aakash-01-1996",
+                "https://twitter.com/AakashAmbodkar7",
+              ],
+              knowsAbout: [
+                "Full Stack Development",
+                "AI/ML",
+                "System Design",
+                "React",
+                "Node.js",
+                "Python",
+                "Cloud Computing",
+              ],
+            }),
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -58,10 +90,6 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-      </body>
-    </html>
-  );
-}
       </body>
     </html>
   );

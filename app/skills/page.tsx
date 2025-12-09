@@ -37,20 +37,15 @@ const skills = [
   },
 ];
 
-export const metadata = {
-  title: "Skills - Aakash Ambodkar",
-  description: "Technical skills and expertise",
-};
-
 export default function Skills() {
   return (
     <main>
-      <Hero title="My Skills" subtitle="Technical expertise and proficiencies" />
+      <Hero title="Skills & Technologies" subtitle="An overview of the technologies, languages, and tools I use in my day-to-day development." />
       <section style={{ padding: "2rem 3rem", background: "var(--bg-primary)", color: "var(--text-primary)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <div className="skills-tiles">
-            {skills.map((skillGroup) => (
-              <div key={skillGroup.title} className="skill-tile">
+            {skills.map((skillGroup, index) => (
+              <div key={skillGroup.title} className={`skill-tile ${index === skills.length - 1 ? 'tools-tile' : ''}`}>
                 <h3>{skillGroup.title}</h3>
                 <div className="skill-tags">
                   {skillGroup.items.map((item) => (
