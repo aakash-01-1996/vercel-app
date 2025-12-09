@@ -210,11 +210,7 @@ export default function Projects() {
           ) : (
             <div
               id="projects-list"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.5rem",
-              }}
+              className="projects-grid"
             >
               {sortedProjects.map((project) => (
                 <div key={project.name} className="project-tile">

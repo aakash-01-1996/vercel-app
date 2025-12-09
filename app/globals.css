@@ -521,6 +521,13 @@ header {
     padding: 1.5rem;
 }
 
+/* Projects grid - responsive auto-fit grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
 /* Project tile */
 .project-tile {
     background: var(--card-bg);
@@ -651,7 +658,7 @@ footer {
 
 .footer-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 0.75rem;
@@ -879,8 +886,8 @@ footer {
     }
 }
 
-/* ===== MOBILE RESPONSIVENESS (768px and below) ===== */
-@media (max-width: 768px) {
+/* ===== MOBILE RESPONSIVENESS (767px and below) ===== */
+@media (max-width: 767px) {
     /* Hero section - reduce font sizes on mobile */
     .hero {
         padding: 2rem 1.5rem;
@@ -915,7 +922,7 @@ footer {
     }
     
     .intro-section {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         gap: 1.5rem;
         margin-bottom: 2.5rem;
@@ -950,6 +957,7 @@ footer {
     
     /* Body content - stack vertically */
     .body-content {
+        display: flex;
         flex-direction: column;
         padding: 1.5rem 1.5rem;
         gap: 1.5rem;
@@ -964,6 +972,9 @@ footer {
     .body-content .image-placeholder {
         width: 100%;
         flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .body-content .image-placeholder img {
@@ -971,11 +982,16 @@ footer {
         max-height: 300px;
     }
     
-    /* Footer - center content in one line */
+    /* Footer - center content in one line, hide credit and year on mobile */
     .footer-content {
         padding: 1.25rem 1rem;
         justify-content: center;
         gap: 0.75rem;
+    }
+    
+    .footer-credit,
+    .footer-year {
+        display: none !important;
     }
     
     .footer-links {
@@ -1001,6 +1017,16 @@ footer {
         background: var(--accent-color);
         color: white;
         transform: translateY(-2px);
+    }
+    
+    /* Projects - 1 column on mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-tile {
+        min-height: auto;
     }
 }
 
@@ -1101,7 +1127,12 @@ footer {
         padding: 2rem;
     }
     
-    /* Projects - keep full width tiles */
+    /* Projects - 2 columns on tablet */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
     #projects-list {
         gap: 1.5rem;
     }
@@ -1192,6 +1223,12 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
+    
+    /* Projects - 2 columns on large tablet */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
 }
 
 /* ===== NEST HUB & LANDSCAPE TABLETS (1200px - 1279px) ===== */
@@ -1254,6 +1291,12 @@ footer {
     
     /* Skills - 3 columns */
     .skills-tiles {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* Projects - 3 columns on Nest Hub */
+    .projects-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
     }

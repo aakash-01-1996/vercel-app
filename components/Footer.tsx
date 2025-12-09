@@ -12,6 +12,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-content">
+        <div className="footer-year">&copy; {year}</div>
         <div className="footer-links">
           <a
             href="https://linkedin.com/in/aakashambodkar/"
@@ -46,6 +47,7 @@ export default function Footer() {
             <i className="fab fa-twitter"></i>
           </a>
         </div>
+        <div className="footer-credit">Built by Aakash</div>
       </div>
     </footer>
   );
