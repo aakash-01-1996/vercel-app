@@ -1,11 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [isDark, setIsDark] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Check localStorage and system preference
@@ -48,10 +50,10 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
           <ul>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/projects">Projects</Link></li>
-            <li><Link href="/skills">Skills</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
+            <li><Link href="/" className={pathname === '/' ? 'nav-active' : ''}>Home</Link></li>
+            <li><Link href="/projects" className={pathname === '/projects' ? 'nav-active' : ''}>Projects</Link></li>
+            <li><Link href="/skills" className={pathname === '/skills' ? 'nav-active' : ''}>Skills</Link></li>
+            <li><Link href="/contact" className={pathname === '/contact' ? 'nav-active' : ''}>Contact</Link></li>
           </ul>
         </nav>
 
@@ -73,10 +75,10 @@ export default function Header() {
             {isMenuOpen && (
               <nav className="mobile-nav">
                 <ul>
-                  <li><Link href="/" onClick={closeMenu}>Home</Link></li>
-                  <li><Link href="/projects" onClick={closeMenu}>Projects</Link></li>
-                  <li><Link href="/skills" onClick={closeMenu}>Skills</Link></li>
-                  <li><Link href="/contact" onClick={closeMenu}>Contact</Link></li>
+                  <li><Link href="/" onClick={closeMenu} className={pathname === '/' ? 'nav-active' : ''}>Home</Link></li>
+                  <li><Link href="/projects" onClick={closeMenu} className={pathname === '/projects' ? 'nav-active' : ''}>Projects</Link></li>
+                  <li><Link href="/skills" onClick={closeMenu} className={pathname === '/skills' ? 'nav-active' : ''}>Skills</Link></li>
+                  <li><Link href="/contact" onClick={closeMenu} className={pathname === '/contact' ? 'nav-active' : ''}>Contact</Link></li>
                 </ul>
               </nav>
             )}
