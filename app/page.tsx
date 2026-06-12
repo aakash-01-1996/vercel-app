@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import GameWidget from "@/components/game/GameWidget";
 
 export const metadata = {
   title: "Aakash Ambodkar - Software Engineer",
@@ -98,6 +99,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <GameWidget />
     </main>
   );
 }

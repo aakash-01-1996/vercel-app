@@ -1395,6 +1395,267 @@ footer {
     }
 }
 
+/* ===== DOODLE JUMP — GAME MODE ===== */
+
+/* GAME MODE pill toggle, docked under the header like the inspiration */
+.game-toggle-wrap {
+    position: fixed;
+    left: 1.5rem;
+    top: 5.2rem;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.game-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 1.2rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-toggle:hover {
+    border-color: var(--accent-color);
+}
+
+.game-toggle-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-toggle-on {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25), 0 0 18px rgba(0, 123, 255, 0.35);
+}
+
+.game-toggle-on .game-toggle-dot {
+    background: #2bd97c;
+    box-shadow: 0 0 8px rgba(43, 217, 124, 0.9);
+}
+
+.game-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    color: var(--text-secondary);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    cursor: help;
+    user-select: none;
+}
+
+.game-info:hover,
+.game-info:focus {
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+    outline: none;
+}
+
+/* Frameless playfield strip overlaying the left side of the page.
+   The rest of the site stays visible and usable to its right. */
+.gm-stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: clamp(320px, 30vw, 430px);
+    z-index: 500;
+    background: rgba(26, 26, 26, 0.86);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-right: 1px solid var(--border-color);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body.light-mode .gm-stage {
+    background: rgba(245, 241, 235, 0.88);
+}
+
+.gm-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* HUD: score top-right, below the header */
+.gm-hud {
+    position: absolute;
+    top: 5.2rem;
+    right: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.1rem;
+    pointer-events: none;
+}
+
+.gm-hud-score {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.gm-hud-best {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+/* Milestone rank toast */
+.gm-toast {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent-color);
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: gm-toast 2.2s ease forwards;
+}
+
+@keyframes gm-toast {
+    0% { opacity: 0; transform: translateX(-50%) translateY(14px); }
+    14% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+}
+
+/* Idle hint at the bottom of the field */
+.gm-hint {
+    position: absolute;
+    bottom: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+    pointer-events: none;
+    animation: gm-hint-pulse 2.4s ease-in-out infinite;
+    max-width: 90vw;
+}
+
+@keyframes gm-hint-pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+}
+
+/* Pause / game-over card (clicks pass through to the field) */
+.gm-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem 2.75rem;
+    text-align: center;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+}
+
+.gm-card-title {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.gm-card-score {
+    margin: 0.4rem 0 0.2rem;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.gm-card-newbest {
+    margin: 0.15rem 0;
+    font-weight: 700;
+    color: #f59e0b;
+}
+
+.gm-card-line {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.gm-card-retry {
+    margin-top: 0.8rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Mobile adjustments: a 320px strip is the whole screen anyway,
+   so the field spans the full width and page scroll locks while playing */
+@media (max-width: 767px) {
+    .game-toggle-wrap {
+        left: 1rem;
+        top: 4.7rem;
+    }
+
+    .game-toggle {
+        padding: 0.5rem 1rem;
+        font-size: 0.72rem;
+    }
+
+    .gm-stage {
+        width: 100%;
+        border-right: none;
+    }
+
+    body.game-mode {
+        overflow: hidden;
+    }
+
+    .gm-hud {
+        top: 4.7rem;
+        right: 1rem;
+    }
+
+    .gm-hud-score {
+        font-size: 1.25rem;
+    }
+
+    .gm-card {
+        padding: 1.25rem 1.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gm-toast,
+    .gm-hint {
+        animation: none;
+    }
+}
+
 /* ===== RESPONSIVE DESIGN STRATEGY =====
  * 
  * Mobile: ≤ 767px
