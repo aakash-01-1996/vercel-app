@@ -12,6 +12,7 @@ const SELECTED_REPOS = [
   "HarryPotter-Trivia",
   "PokeDex",
   "MLFlow",
+  "tenke-proathlete",
 ];
 
 const CACHE_KEY = "github_projects_cache";
