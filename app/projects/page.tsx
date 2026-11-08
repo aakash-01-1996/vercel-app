@@ -5,14 +5,15 @@ import { useState, useEffect } from "react";
 
 const GITHUB_USERNAME = "aakash-01-1996";
 const SELECTED_REPOS = [
+  "Tenke-ProAthlete",
+  "Blurt-AI",
   "AI-Mock-Interview",
   "StrategicTrio",
   "CineMind",
   "CodeSpark",
   "HarryPotter-Trivia",
   "PokeDex",
-  "MLFlow",
-  "tenke-proathlete",
+  "MLFlow"
 ];
 
 const CACHE_KEY = "github_projects_cache";
